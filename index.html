@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>DashBoard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="index.js"></script>
+    </head>
+    <body style="background-color: #fafafa">
+
+        <div class="uk-grid uk-grid-small" data-uk-grid>
+            <div class="uk-width-1-6" style="background-color: #323641">
+                    <div id="left-nav-wrap">
+                        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
+                            <a class="uk-navbar-item uk-logo" href="#">
+                                <img src="https://s3.ap-south-1.amazonaws.com/fqevent/events/assets/logo.png" width="50" height="50">
+                            </a>
+                            <li class="uk-nav-header uk-text-bold"><h5 class="uk-margin-remove-bottom">Dashboard</h5></li>
+                            <li><a href=""><i class="far fa-calendar-check fa-lg uk-margin-small-right"></i>Home</a></li>
+                            <li><a href=""><i class="fas fa-drafting-compass fa-lg uk-margin-small-right"></i>Profile</a></li>
+                            
+                            <li><a href=""><i class="fas fa-archive fa-lg uk-margin-small-right"></i>Settings</a></li>
+                                
+                            <li><a href="#"><i class="far fa-life-ring fa-lg uk-margin-small-right"></i>Tips</a></li>
+                                
+                        </ul>
+                        <div class="left-content-box uk-margin-top">
+                    
+                            <h5>Daily Reports</h5>
+                            <div>
+                                <span class="uk-text-small">Emotions <small>(+50)</small></span>
+                                <progress class="uk-progress" value="50" max="100"></progress>
+                            </div>
+                            <div>
+                                <span class="uk-text-small">GScore <small>(+78)</small></span>
+                                <progress class="uk-progress success" value="78" max="100"></progress>
+                            </div>
+                            <div>
+                                <span class="uk-text-small">Feedback <small>(-12)</small></span>
+                                <progress class="uk-progress warning" value="12" max="100"></progress>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bar-bottom">
+                        <ul class="uk-subnav uk-flex uk-flex-center" data-uk-grid>
+                            <li>
+                                <a href="" class="uk-icon-link" data-uk-icon="icon: home" title="Home" data-uk-tooltip></a>
+                            </li>        
+                        </ul>
+                    </div>
+            </div>
+
+            <div class="uk-width-expand uk-margin-small-right">
+                <div class="uk-navbar-container" uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></a>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <a style="padding-left:10px; padding-right:10px;">
+                            <img src="https://s3.ap-south-1.amazonaws.com/fqevent/events/assets/logo.png" width="50" height="50">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="uk-grid uk-grid-small uk-child-width-1-3" data-uk-grid>
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Default</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Default</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Default</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-child-width-1-1 uk-grid uk-grid-small uk-margin-small uk-text-center" data-uk-grid>
+                    <h3 class="ukmargin-small uk-text-muted">Topic name</h3>
+                    <div id="chart_div" style="margin-left:auto; margin-right:auto; height: 30rem; width: 40rem;"></div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
