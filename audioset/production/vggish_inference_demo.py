@@ -10,8 +10,8 @@ class OutEmbeddings:
   		self.graph = tf.Graph()
   		self.Session = tf.Session(graph = self.graph)
   		with self.graph.as_default():
-  			self.saver = tf.train.import_meta_graph('vggish_graph.meta')
-  			self.saver.restore(self.Session, 'vggish_model.ckpt')
+  			self.saver = tf.train.import_meta_graph('model/vggish_graph.meta')
+  			self.saver.restore(self.Session, 'model/vggish_model.ckpt')
   			self.features_tensor = self.graph.get_tensor_by_name('vggish/input_features:0')
   			self.embedding_tensor = self.graph.get_tensor_by_name('vggish/embedding:0')
 

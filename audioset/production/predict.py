@@ -6,12 +6,12 @@ from keras.models import model_from_json
 import matplotlib.pyplot as plt
 from statistics import mean
 
-file = 'long-sample.wav'
+file = '/home/rohit/IIIT-prayagraj/speeks/Speech-Emotion-Analyzer/bothra-sample.wav'
 Oeg = OutEmbeddings()
 
 x = Oeg.run(file)
 
-div = 3
+div = 1
 
 xx = []
 
@@ -22,12 +22,12 @@ xx = np.array(xx).reshape(-1,1,128)
 
 # print(xx)
 
-json_file = open('confidence_model.json', 'r')
+json_file = open('model/confidence_model.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
-loaded_model.load_weights("confidence_model.h5")
+loaded_model.load_weights("model/confidence_model.h5")
 
 out = np.array(loaded_model.predict(np.array(xx)))
 
