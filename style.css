@@ -1,6 +1,16 @@
 
 
 /* Left bar */
+
+  #left-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom:0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 2;
+  }
   h5{
       color: white
   }
@@ -12,7 +22,7 @@
   }
   #left-nav-wrap ul.uk-nav-default li.uk-nav-header {
       padding:  20px 20px 8px 20px;
-      color: white
+      color: white;
   }
   
   #left-nav-wrap ul.uk-nav-default > li > a:hover, #left-col ul.uk-nav-default > li.uk-open > a {
@@ -49,7 +59,12 @@
     border-top: 1px solid rgba(255,255,255,0.07);
     padding: 15px 0;
     background-color: #222A30;
+    position: fixed;
+    left: 0;
+    right: 0;
     z-index: 3;
+    bottom: 0;
+    width: 18.9%;
   }
   .uk-tooltip {
       background-color: white;
