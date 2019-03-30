@@ -1,3 +1,5 @@
+import os
+os.environ['KERAS_BACKEND'] = 'theano'
 import librosa
 import numpy as np
 from keras.models import model_from_json
@@ -6,6 +8,8 @@ import tensorflow as tf
 import pandas as pd
 import soundfile as sf
 from flask import Flask, flash, request, redirect, url_for
+from keras import backend as K 
+import json
 
 json_file = open('model.json', 'r')
 loaded_model_json = json_file.read()
@@ -21,54 +25,52 @@ loaded_model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['a
 app = Flask(__name__)
 
 def predict_speech_emotion(filename):
-  f = sf.SoundFile(file_name)
+	f = sf.SoundFile(filename)
 
-  duration = int(len(f) / f.samplerate)
+	duration = int(len(f) / f.samplerate)
 
-  X, sample_rate = librosa.load(file_name, res_type='kaiser_fast',duration=duration,sr=22050*2,offset=0.5)
-  sample_rate = np.array(sample_rate)
+	X, sample_rate = librosa.load(filename, res_type='kaiser_fast',duration=duration,sr=22050*2,offset=0.5)
+	sample_rate = np.array(sample_rate)
 
-  list_mfccs = []
-  for i in range(X.shape[0]//110250):
-    low = 110250*i
-    high = 110250*i+110250
-    mfccs = np.mean(librosa.feature.mfcc(y=X[low:high], sr=sample_rate, n_mfcc=13),axis=0)
-    list_mfccs.append(mfccs)
+	list_mfccs = []
+	for i in range(X.shape[0]//110250):
+		low = 110250*i
+		high = 110250*i+110250
+		mfccs = np.mean(librosa.feature.mfcc(y=X[low:high], sr=sample_rate, n_mfcc=13),axis=0)
+		list_mfccs.append(mfccs)
 
-  livedf2= pd.DataFrame(data=list_mfccs)
+	livedf2= pd.DataFrame(data=list_mfccs)
 
-  twodim= np.expand_dims(livedf2, axis=2)
+	twodim= np.expand_dims(livedf2, axis=2)
 
-  livepreds = loaded_model.predict(twodim, batch_size=32,verbose=1)
+	livepreds = loaded_model.predict(twodim, batch_size=32,verbose=1)
 
-  livepreds1=livepreds.argmax(axis=1)
+	livepreds1=livepreds.argmax(axis=1)
 
-  male_calm={
-      1:'female_sad',
-      2:'female_fearful',
-      3:'male_fearful',
-      4:'female_fearful',
-      5:'female_happy',
-      6:'male_calm',
-      7:'male_angry',
-      8:'female_angry',
-      9:'female_happy'
-      }
+	male_calm={
+			1:'female_sad',
+			2:'female_fearful',
+			3:'male_fearful',
+			4:'female_fearful',
+			5:'female_happy',
+			6:'male_calm',
+			7:'male_angry',
+			8:'female_angry',
+			9:'female_happy'
+			}
 
 
-  list_predicted = []
-  for i in livepreds1:
-    list_predicted.append(male_calm[i])
+	list_predicted = []
+	for i in livepreds1:
+		list_predicted.append(male_calm[i])
 
-  diction = {}
-  for (i, value) in enumerate(list_predicted):
-    diction[str(i)] = str(value)
+	diction = {}
+	for (i, value) in enumerate(list_predicted):
+		diction[str(i)] = str(value).split('_')[1]
 
-  js = json.dumps(diction)
+	js = json.dumps(diction)
 
-  cap.release()
-
-  return js
+	return js
 
 @app.route('/')
 def index():

@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from statistics import mean
 import json
 import soundfile as sf
+from keras import backend as K
 
 
 def return_confidence(filename):
@@ -35,6 +36,8 @@ def return_confidence(filename):
     for (i,value) in enumerate(y):
         diction[str(i)] = str(value)
     js = json.dumps(diction)
+
+    K.clear_session()
 
     return js
 
