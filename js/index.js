@@ -1,5 +1,6 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawLogScales);
+google.charts.setOnLoadCallback(drawChart);
 
 function drawLogScales() {
       var data = new google.visualization.DataTable();
@@ -34,6 +35,11 @@ function drawLogScales() {
         colors: ['#a52714', '#097138']
       };
 
+      var Chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      
+      Chart.draw(data, options)
       chart.draw(data, options);
+      chart_div.draw(datas, option)
     }
+
