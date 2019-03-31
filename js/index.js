@@ -5,8 +5,8 @@ google.charts.setOnLoadCallback(drawChart);
 function drawLogScales() {
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'X');
-      data.addColumn('number', 'Dogs');
-      data.addColumn('number', 'Cats');
+      data.addColumn('number', 'Confidence');
+      data.addColumn('number', 'Previous Confidence');
 
       data.addRows([
         [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
@@ -29,7 +29,7 @@ function drawLogScales() {
           logScale: true
         },
         vAxis: {
-          title: 'Popularity',
+          title: 'Confidence levels',
           logScale: false
         },
         colors: ['#a52714', '#097138']
