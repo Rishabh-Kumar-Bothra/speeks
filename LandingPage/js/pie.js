@@ -4,16 +4,17 @@ google.charts.load('current', {'packages':['corechart']});
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Emotion', 'value per Frame'],
+          ['Anger',     11],
+          ['Disgust',      2],
+          ['Fear',  4],
+          ['Sad', 8],
+          ['Surprise',    7],
+          ['Neutral', 10]
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Face Emotion'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
