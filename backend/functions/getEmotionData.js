@@ -2,29 +2,30 @@ var FormData = require('form-data');
 var fs = require('fs');
 var fetch = require('node-fetch');
 
-var webm2wav = require('./webm2wav');
+var webm2mp4 = require('./webm2mp4');
 
-async function getConfidenceData(videoFilePath) {
+async function getEmotionData(videoFilePath) {
     return new Promise(async (resolve, reject) => {
         let form = new FormData();
 
-        let outputFile = await webm2wav(videoFilePath);
+        let outputFile = await webm2mp4(videoFilePath);
         let readStream = fs.createReadStream(outputFile);
         console.log(outputFile);
 
-        form.append('wavFile', readStream);
+        form.append('videoFile', readStream);
 
-        let fetchData = await fetch(process.env.CONFIDENCE_ENDPOINT, {
+        let fetchData = await fetch(process.env.EMOTION_ENDPOINT, {
             method: 'POST',
             mode: 'cors',
             headers: form.getHeaders(),
             body: form,
         });
 
-        let confidenceData = await fetchData.text();
+        let emotionData = await fetchData.text();
         //console.log(confidenceData);
-        resolve(confidenceData);
+        resolve(emotionData);
     });
 }
 
-module.exports = getConfidenceData;
+module.exports = getEmotionData;
+

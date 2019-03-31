@@ -2,7 +2,7 @@ const util = require('util');
 const path = require('path');
 const exec = util.promisify(require('child_process').exec);
 
-async function webm2wav(inputPath) {
+async function webm2mp4(inputPath) {
     const inputFile = path.resolve('./') + '/' + inputPath;
     const outputFile = getOutputFileName(inputPath);
 
@@ -15,7 +15,7 @@ async function webm2wav(inputPath) {
 
 function getOutputFileName(inputPath) {
     const wavFileName = inputPath.slice('uploads/'.length, inputPath.length);
-    return path.resolve(`./wavfiles/${wavFileName}.wav`);
+    return path.resolve(`./mp4files/${wavFileName}.mp4`);
 }
 
-module.exports = webm2wav;
+module.exports = webm2mp4;
